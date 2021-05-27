@@ -1,5 +1,11 @@
 from keras.layers import Layer, Input, Conv2D, Activation, add, BatchNormalization, UpSampling2D, ZeroPadding2D, Conv2DTranspose, Flatten, MaxPooling2D, AveragePooling2D
-from keras_contrib.layers.normalization import InstanceNormalization, InputSpec
+
+
+# from keras_contrib.layers.normalization import InstanceNormalization, InputSpec
+from keras_contrib.layers.normalization.instancenormalization import InstanceNormalization
+# from tensorflow_addons.layers import InstanceNormalization
+from keras.layers import InputSpec
+
 from keras.layers.advanced_activations import LeakyReLU
 from keras.layers.core import Dense
 from keras.optimizers import Adam
@@ -9,7 +15,9 @@ from keras.utils import plot_model
 from keras.engine.topology import Container
 
 from collections import OrderedDict
-from scipy.misc import imsave, toimage  # has depricated
+# from scipy.misc import toimage  # has depricated
+from PIL import Image
+
 import numpy as np
 import random
 import datetime
@@ -671,7 +679,8 @@ class CycleGAN():
         if self.channels == 1:
             image = image[:, :, 0]
 
-        toimage(image, cmin=-1, cmax=1).save(path_name)
+        # toimage(image, cmin=-1, cmax=1).save(path_name)
+        Image.fromarray(image).save(path_name)
 
     def saveImages(self, epoch, real_image_A, real_image_B, num_saved_images=1):
         directory = os.path.join('images', self.date_time)
@@ -853,7 +862,9 @@ class CycleGAN():
             def save_image(image, name, domain):
                 if self.channels == 1:
                     image = image[:, :, 0]
-                toimage(image, cmin=-1, cmax=1).save(os.path.join(
+                # toimage(image, cmin=-1, cmax=1).save(os.path.join(
+                #     'generate_images', 'synthetic_images', domain, name))
+                Image.fromarray(image).save(os.path.join(
                     'generate_images', 'synthetic_images', domain, name))
 
             # Test A images
