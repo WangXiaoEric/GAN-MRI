@@ -1,3 +1,7 @@
+采用的思路与biomedicalimaging比较用老版本的tensorflow 1.2.2/2.0.0。  用conda与pip管理软件版本
+
+软件需要人们维护，不然无法使用。
+
 
 
 ## Generative Adversarial Networks for Image-to-Image Translation on Multi-Contrast MR Images - A Comparison of CycleGAN and UNIT  
